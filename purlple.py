@@ -1,7 +1,15 @@
-import turtle as t, math as m, random as r, time
+import math as m
+import random as r
+
+try:
+    import turtle as t
+except ImportError:
+    raise SystemExit(
+        "Falta Tkinter. En Debian/Ubuntu instala: sudo apt-get install python3-tk"
+    ) from None
 
 s= t.Screen(); s.setup(700, 700);
-s.bgcolor("black"); s.tracer(0)
+s.bgcolor("black"); s.colormode(1.0); s.tracer(0)
 p= t.Turtle(); p.hideturtle()
 
 def heart(a, scale):
@@ -29,9 +37,8 @@ for i in range(10000):
     p.pendown()
     p.goto(x + length * m.cos(ang), y + length * m.sin(ang))
 
-    if i % 200 == 0:
+    if i % 8 == 0:
         s.update()
-    time.sleep(0.002)
 
 for i in range(3500):
     a = r.uniform(0, 2 * m.pi)
@@ -47,9 +54,8 @@ for i in range(3500):
     p.pendown()
     p.goto(x + length * m.cos(ang), y + length * m.sin(ang))
 
-    if i % 150 == 0:
+    if i % 8 == 0:
         s.update()
-    time.sleep(0.002)
 
 s.update()
 t.done()

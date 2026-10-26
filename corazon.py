@@ -1,5 +1,13 @@
-import turtle
 import math
+
+try:
+    import turtle
+except ImportError:
+    raise SystemExit(
+        "Falta Tkinter. En Debian/Ubuntu instala: sudo apt-get install python3-tk"
+    ) from None
+
+
 def heart(t):
     x = 16 * math.sin(t)**3
     y = 13 * math.cos(t) - 5 * \
@@ -17,14 +25,15 @@ t.speed(0)
 t.hideturtle()
 t.width(1)
 N, K = 140, 2.1
-SCALE = 18
+SCALE = 9
 bright, dark = (0.95, 0.15, 0.1), \
 (0.03, 0.0, 0.0)
 for i in range(N):
     ang = 2 * math.pi * i / N
     hx, hy = heart(ang)
     hx, hy = hx * SCALE, hy * SCALE
-    ex, ey = hx * K, hy * K
+    ex, ey = hx * K, hy * K + 50
+    hy += 50
     steps = 14
     t.penup()
     t.goto(hx, hy)
